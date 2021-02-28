@@ -1,0 +1,119 @@
+<div class="home h-100 overflow-hidden">
+
+  <div #headerContainer class="row mx-0 border-bottom header-container">
+    <div class="px-3 py-2 justify-content-center text-white logo align-items-center d-flex font-weight-bold">
+      ABCHospital</div>
+    <div class="px-3 d-flex font-weight-bold py-2 my-2 border-right align-items-center cursor-default">
+      <div class="user-img mx-2 text-white text-center align-self-center">S</div>
+      <div class="ml-2 mr-3 doctor-name">Dr. Strange <br><span class="font-weight-normal spec">Surgeon</span></div>
+      <div class="dropdown-icon align-self-center mx-3 cursor-pointer"></div>
+    </div>
+    <div class="px-3 d-flex font-weight-bold py-2 my-2 border-right cursor-default">
+      <!-- <input type="date" placeholder="Choose date" class="form-control"> -->
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (ngModelChange)="dateChanged($event)"
+          placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon><span matDatepickerToggleIcon class="dropdown-icon cursor-pointer"></span></mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> -->
+
+      <!-- <div class="dropdown-icon align-self-center mx-3 cursor-pointer"></div> -->
+    </div>
+    <div class="ml-auto px-3 text-center align-self-center">
+      <div class="px-3 py-2 titles cursor-pointer" (click)="goToScheduleSlots()">
+        Appointments
+      </div>
+    </div>
+    <div class="px-1 text-center align-self-center">
+      <div class="px-3 py-2 titles cursor-pointer">
+        Walk-in
+      </div>
+    </div>
+    <div class="px-3 align-self-center">
+      <img class="settings-img">
+    </div>
+  </div>
+
+  <div class="overflow-hidden" [ngStyle]="{'height': 'calc(100% - ' + headerContainer?.clientHeight + 'px)'}">
+    <div class="px-4 h-100 appointment-list-container">
+      <div #headerContainer class="py-3 home-text">Home</div>
+
+      <div class="d-flex w-100 px-4" #tabsContainer>
+        <div class="selected-tab tab py-3">
+          <div class="tab-text pl-3">
+            <span
+              class="font-weight-bolder font-22">{{patients?.length && patients?.length<10 ? "0" : ""}}{{patients.length}}
+            </span>
+            <br> Queue
+          </div>
+        </div>
+        <div class="other-tabs tab py-3 pl-3">
+          <span class="font-weight-bolder font-22">02</span>
+          <br> Earlier
+        </div>
+        <div class="other-tabs tab py-3 pl-3">
+          <span class="font-weight-bolder font-22">02</span>
+          <br> Waitlist
+        </div>
+        <div class="other-tabs tab py-3 pl-3">
+          <span class="font-weight-bolder font-22">0</span>
+          <br> No Show
+        </div>
+      </div>
+
+      <div class="overflow-hidden bg-white appointment-list py-3 mx-4"
+        [ngStyle]="{'height': 'calc(100% - ' + (headerContainer?.clientHeight + tabsContainer?.clientHeight) + 'px)'}">
+        <div #headerList class="row mx-0 border-bottom py-3 font-weight-bolder">
+          <div class="col-3 offset-1">PATIENT</div>
+          <div class="col-2">CONTACT</div>
+          <div class="col-2">APPOINTMENT</div>
+        </div>
+        <div class="overflow-auto" [ngStyle]="{'height': 'calc(100% - ' + (headerList?.clientHeight) + 'px)'}">
+          <ng-container *ngIf="patients?.length; else errorTemplate">
+            <div class="row mx-0 border-bottom py-3 list-content align-items-center"
+              *ngFor="let patient of patients; index as i">
+              <div class="col-1 d-flex justify-content-between">
+                <img class="drag-icon icon">
+                <span class="badge border rounded-circle">{{i+1}}</span>
+              </div>
+
+              <div class="col-3 patient-name d-flex">
+                <div class="rounded-circle user-img mr-2 text-white text-center align-self-center text-uppercase">
+                  {{patient?.patientName[0]}}
+                </div>
+                <div class="pl-1">{{patient?.patientName}} <br>
+                  <span class="contact-gender-text">{{patient?.gender}}, {{patient?.age}} yr</span>
+                </div>
+              </div>
+              <div class="col-2 contact-gender-text">{{patient?.contact}}</div>
+              <div class="col-2 contact-gender-text">{{patient?.appointmentTime}}</div>
+              <div class="col-2">
+                <div class="titles text-center py-2">
+                  <img class="mr-2" [ngClass]="i>5 ? 'checklist-icon icon' : 'pulse-icon icon'">
+                  {{i>5 ? "Checkin" : "Vitals"}}</div>
+              </div>
+              <div class="col-2 text-center"><img class="ellipses-icon icon"></div>
+
+            </div>
+          </ng-container>
+          <ng-template #errorTemplate>
+            <div class="text-danger py-4 text-center font-22">
+              No Appointments found for the selected Date
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

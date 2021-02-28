@@ -1,0 +1,56 @@
+.backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  opacity: 0.7;
+  z-index: 50;
+}
+
+.app-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  overflow: auto;
+  background-color: white;
+  z-index: 51;
+  width: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #5e5959;
+}
+
+.form-title {
+  font-size: 17px;
+  font-weight: 500;
+
+  .slot-note {
+    color: rgb(143, 141, 141);
+  }
+}
+
+.time-input {
+  min-height: 3.75rem;
+}
+
+.icon {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.close-icon {
+  content: url('/../../assets/icons/form-close-icon_1.svg');
+}
+
+.time-picker {
+  height: 3.125rem;
+}

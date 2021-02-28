@@ -1,0 +1,185 @@
+.appointment-list-container {
+  background-color: #e4f1f0;
+
+  .home-text {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .tab {
+    min-width: 15%;
+    margin-right: 12px;
+    font-size: 20px;
+    line-height: 1.2;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  .selected-tab {
+    color: #3367D6;
+    background-color: white;
+
+    .tab-text {
+      border-left: 6px #3367D6 solid;
+    }
+  }
+
+  .other-tabs {
+    background-color: #3367D6;
+    color: white;
+  }
+
+  .titles {
+    color: #3367D6;
+    font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
+    border-radius: 2rem;
+    box-shadow: 1px 1px 5px #aaaaaa;
+    transform: translateZ(10px);
+    min-width: 11rem;
+  }
+
+  .titles:hover {
+    transform: translateY(-2px);
+    box-shadow: 1px 1px 6px #aaaaaa;
+  }
+
+  .font-22 {
+    font-size: 22px;
+  }
+
+  .appointment-list {
+    transform: translateY(-7px);
+    border-radius: 10px;
+
+    .list-content {
+      .badge {
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1rem;
+        color: #c75009a1;
+        background-color: #f7d99b54;
+      }
+
+      .patient-name {
+        color: rgb(22, 20, 20);
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .contact-gender-text {
+        color: grey;
+        font-size: 15px;
+        font-weight: lighter;
+      }
+    }
+
+    .list-content:nth-child(odd) {
+      .badge {
+        color: #3367D6;
+        background-color: #9fbaf34f;
+      }
+    }
+
+    .list-content:hover {
+      box-shadow: 0 0 5px;
+    }
+  }
+}
+
+.icon {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.drag-icon {
+  content: url('/../../assets/icons/drag-icon_3.svg');
+}
+
+.ellipses-icon {
+  content: url('/../../assets/icons/ellipsis-icon_1.svg');
+}
+
+.checklist-icon {
+  content: url('/../../assets/icons/card-checklist-icon_1.svg');
+}
+
+.pulse-icon {
+  content: url('/../../assets/icons/pulse-icon_4.svg');
+}
+
+.user-img {
+  height: 2.2rem;
+  width: 2.2rem;
+  background-color: #7b7f80;
+  line-height: 2.2rem;
+}
+
+.home {
+
+  .header-container {
+    box-shadow: 0 0 1px;
+
+    .logo {
+      background-color: #3367D6;
+      font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
+      font-size: 18px;
+      min-width: 12rem;
+      border-top-right-radius: 12px;
+      border-top-left-radius: 12px;
+    }
+
+    .user-img {
+      border-radius: 30%;
+      height: 2rem;
+      width: 2rem;
+      background-color: #0097A7;
+      line-height: 2rem;
+    }
+
+    .dropdown-icon {
+      border-color: #70757a transparent;
+      border-style: solid;
+      border-width: 8px 6px 0px 6px;
+    }
+
+    .user-img {
+      border-radius: 35%;
+      display: block;
+    }
+
+    .doctor-name {
+      font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
+      line-height: 1.4286;
+      color: #3c4043;
+      font-size: 14px;
+
+      .spec {
+        color: #967676;
+      }
+    }
+
+    .titles {
+      color: #3367D6;
+      font-family: 'Google Sans', 'Noto Sans Myanmar UI', arial, sans-serif;
+      border-radius: 2rem;
+      box-shadow: 1px 1px 5px #aaaaaa;
+      transform: translateZ(10px);
+      min-width: 11rem;
+    }
+
+    .titles:hover {
+      transform: translateY(-2px);
+      box-shadow: 1px 1px 6px #aaaaaa;
+    }
+
+    .settings-img {
+      content: url('/../../assets/icons/settings.svg');
+      min-width: 1.5rem;
+      min-height: 1.5rem;
+      max-width: 1.5rem;
+      max-height: 1.5rem;
+    }
+  }
+}

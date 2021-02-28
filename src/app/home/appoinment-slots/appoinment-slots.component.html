@@ -1,0 +1,59 @@
+<div class="px-4 h-100 appointment-list-container">
+  <div #headerContainer class="py-3 title-text">
+    <span class="title pr-3 border-right mr-3">Appointments</span>
+    <span class="text-underline cursor-pointer" (click)="goToHomeScreen()">Home</span> > Appointments
+  </div>
+
+  <div class="overflow-hidden py-3 mx-4">
+    <div class="row mx-0">
+      <div class="col-3">
+        <div class="bg-white">
+          <mat-calendar [selected]="selectedDate" [minDate]="today" (selectedChange)="dateChanged($event)"></mat-calendar>
+        </div>
+      </div>
+      <div class="col-8-5 ml-4 px-3 bg-white py-4 rounded">
+        <div class="d-flex w-100 justify-content-between pb-3 align-items-center">
+          <div class="slot-title-container d-flex">
+            <img class="schedule-icon icon mr-3">
+            <div>
+              <div class="slot-title pb-1">Morning</div>
+              <div>9.00 AM to 12.00 PM</div>
+            </div>
+          </div>
+          <span class="add-slots-link cursor-pointer" (click)="addSlots()">+ Add Slots</span>
+        </div>
+        <div class="pb-3" *ngIf="eveningSlots?.length; else noSlotsTemplate">
+          <span class="slot-list px-3 py-2 mr-3 mb-3 text-center" *ngFor="let slot of morningSlots">
+            <span class="radio-content mr-3 align-middle"></span> <span class="align-middle">{{slot?.slotTime}}</span>
+          </span>
+        </div>
+
+        <div class="d-flex w-100 justify-content-between pb-3 align-items-center">
+          <div class="slot-title-container d-flex">
+            <img class="schedule-icon icon mr-3">
+            <div>
+              <div class="slot-title pb-1">Evening</div>
+              <div>5.00 PM to 9.00 PM</div>
+            </div>
+          </div>
+          <span class="add-slots-link cursor-pointer" (click)="addSlots(false)">+ Add Slots</span>
+        </div>
+
+        <div *ngIf="eveningSlots?.length; else noSlotsTemplate">
+          <span class="slot-list px-3 py-2 mr-3 mb-3 text-center" *ngFor="let slot of eveningSlots">
+            <span class="radio-content mr-3 align-middle"></span> <span class="align-middle">{{slot?.slotTime}}</span>
+          </span>
+        </div>
+
+        <ng-template #noSlotsTemplate>
+          <div class="text-danger py-4 text-center font-22">No Slots Found for the given Date and timing</div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-schedule-slot-modal *ngIf="openAddSlotsModal" [isMorningSlot]="addForMorningSlot"
+  (hideModal)="openAddSlotsModal = false" (bookSlot)="bookSlot($event)">
+</app-schedule-slot-modal>

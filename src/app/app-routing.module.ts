@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { Constants } from './constants/constants';
+import { AppoinmentSlotsComponent } from './home/appoinment-slots/appoinment-slots.component';
+import { AppointmentListComponent } from './home/appointment-list/appointment-list.component';
 
 const routes: Routes = [
-  {
-    path: '', component: HomeComponent,
-  },
+  { path: '', component: AppointmentListComponent },
+  { path: Constants.ROUTES.appointmentList, component: AppointmentListComponent },
+  { path: Constants.ROUTES.scheduleAppointment, component: AppoinmentSlotsComponent },
   { path: '**', redirectTo: '' }
 ];
 

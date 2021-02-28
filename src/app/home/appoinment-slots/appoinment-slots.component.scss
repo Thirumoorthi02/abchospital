@@ -1,0 +1,72 @@
+.appointment-list-container {
+  background-color: #e4f1f0;
+
+  .title-text {
+    font-size: 18px;
+    font-weight: 400;
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  .text-underline {
+    text-decoration: underline;
+  }
+
+  .slot-title-container {
+    font-size: 14px;
+    font-weight: lighter;
+    color: grey;
+
+    .slot-title {
+      font-size: 16px;
+      color: rgb(70, 67, 67);
+      line-height: 1.5rem;
+      font-weight: 500;
+    }
+  }
+
+  .slot-list {
+    display: inline-block;
+    width: calc(20% - 1rem);
+    border-radius: 0.5rem;
+    border: 1px solid #6d97f3;
+    color: rgb(58, 36, 110);
+  }
+
+  .add-slots-link {
+    color: #3367D6;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .radio-content {
+    height: 1rem;
+    width: 1rem;
+    border: 1px solid rgb(35, 105, 133);
+    display: inline-block;
+    border-radius: 1rem;
+  }
+}
+
+.icon {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
+.schedule-icon {
+  content: url('/../../assets/icons/schedule-icon_3.svg');
+}
+
+.col-8-5 {
+  flex: 0 0 calc(75% - 1.5rem);
+  max-width: calc(75% - 1.5rem);
+}
+
+.font-22 {
+  font-size: 22px;
+}
