@@ -14,8 +14,7 @@ export class AppointmentService {
      */
     public getPatientDetails(date: Date): Observable<any> {
         // return of(patientDetailsMock);
-        const params = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
-        return this.http.get(`${Constants.API_URLS.getPatientDetails}${params}/`);
+        return this.http.get(`${Constants.API_URLS.getPatientDetails}${this.getDDMMYYYY(date)}`);
     }
 
     /**
@@ -23,15 +22,21 @@ export class AppointmentService {
      */
     public getSlotDetails(date: Date): Observable<any> {
         // return of(slotDetailsMock);
-        const params = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
-        return this.http.get(`${Constants.API_URLS.getSlotDetails}${params}/`);
+        return this.http.get(`${Constants.API_URLS.getSlotDetails}${this.getDDMMYYYY(date)}`);
     }
 
     /**
      * Put method to add slots details for the particular date
      */
     public addSlot(date: Date, reqObj): Observable<any> {
-        const params = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
-        return this.http.put(`${Constants.API_URLS.addSlots}${params}/`, reqObj);
+        return this.http.put(`${Constants.API_URLS.addSlots}${this.getDDMMYYYY(date)}`, reqObj);
+    }
+
+    private getDDMMYYYY(date: Date): string {
+        const actualDate = date.getDate();
+        const dateVal = actualDate < 10 ? `0${actualDate}` : actualDate;
+        const actualMonth = date.getMonth() + 1;
+        const monthVal = actualMonth < 10 ? `0${actualMonth}` : actualMonth;
+        return `${dateVal}-${monthVal}-${date.getFullYear()}`;
     }
 }
