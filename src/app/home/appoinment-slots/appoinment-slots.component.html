@@ -22,7 +22,7 @@
           </div>
           <span class="add-slots-link cursor-pointer" (click)="addSlots()">+ Add Slots</span>
         </div>
-        <div class="pb-3" *ngIf="eveningSlots?.length; else noSlotsTemplate">
+        <div class="pb-3" *ngIf="morningSlots?.length; else noSlotsTemplate">
           <span class="slot-list px-3 py-2 mr-3 mb-3 text-center" *ngFor="let slot of morningSlots">
             <span class="radio-content mr-3 align-middle"></span> <span class="align-middle">{{slot?.slotTime}}</span>
           </span>
@@ -54,6 +54,6 @@
   </div>
 
 </div>
-<app-schedule-slot-modal *ngIf="openAddSlotsModal" [isMorningSlot]="addForMorningSlot"
-  (hideModal)="openAddSlotsModal = false" (bookSlot)="bookSlot($event)">
+<app-schedule-slot-modal *ngIf="openAddSlotsModal" [isMorningSlot]="addForMorningSlot" [selectedDate]="selectedDate"
+  (hideModal)="openAddSlotsModal = false" (bookSlot)="addSlotSuccess($event)">
 </app-schedule-slot-modal>

@@ -1,8 +1,11 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { SharedDataService } from 'src/app/shared-service/shared-data.service';
+import { AppointmentService } from '../../appointment.service';
 
 @Component({
   selector: 'app-schedule-slot-modal',
   templateUrl: './schedule-slot-modal.component.html',
+  providers: [AppointmentService],
   styleUrls: ['./schedule-slot-modal.component.scss']
 })
 export class ScheduleSlotModalComponent implements OnInit {
@@ -13,8 +16,13 @@ export class ScheduleSlotModalComponent implements OnInit {
   @Output() public bookSlot = new EventEmitter();
   @Output() public hideModal = new EventEmitter();
   @Input() public isMorningSlot = false;
+  @Input() public selectedDate = new Date();
+  public showErrorMessage = false;
 
-  constructor() { }
+  constructor(
+    private appointmentService: AppointmentService,
+    private sharedDataService: SharedDataService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -37,7 +45,16 @@ export class ScheduleSlotModalComponent implements OnInit {
         },
         timing: this.isMorningSlot ? 'Morning' : 'Evening'
       };
-      this.bookSlot.emit(reqObj);
+
+      this.sharedDataService.setLoader(true);
+      this.appointmentService.addSlot(this.selectedDate, reqObj).subscribe(data => {
+        this.sharedDataService.setLoader(false);
+        this.bookSlot.emit(data);
+      }, (err) => {
+        this.sharedDataService.setLoader(false);
+        this.showErrorMessage = true;
+        console.log(err);
+      });
     }
   }
 
@@ -52,6 +69,7 @@ export class ScheduleSlotModalComponent implements OnInit {
    * Function triggered when time changes
    */
   public fromTimeChanged(time): void {
+    this.showErrorMessage = false;
     this.from = time;
     let [hours, minutes] = time.split(':');
     if (Number(minutes) + 30 > 59) {

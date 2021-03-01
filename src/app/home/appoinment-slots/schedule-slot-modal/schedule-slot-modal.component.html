@@ -36,6 +36,9 @@
     </ng-container> -->
 
   </div>
+  <div class="text-danger px-3 pt-3 font-16" *ngIf="showErrorMessage">
+    (Slot timing overlaps please provide valid slot timing)
+  </div>
   <div class="p-5">
     <button class="normal-btn btn" (click)="schedule()">Schedule Slot</button>
   </div>

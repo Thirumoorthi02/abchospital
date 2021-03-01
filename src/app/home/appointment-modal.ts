@@ -16,10 +16,10 @@ export class Patient {
         this.age = patient.age || 0;
         this.fromTime = {
             hours: (patient.fromTime || {}).hours || '',
-            minutes: (patient.toTime || {}).minutes || ''
+            minutes: (patient.fromTime || {}).minutes || ''
         };
-        this.fromTime = {
-            hours: (patient.fromTime || {}).hours || '',
+        this.toTime = {
+            hours: (patient.toTime || {}).hours || '',
             minutes: (patient.toTime || {}).minutes || ''
         };
         this.populateAppointmentTime();
@@ -45,10 +45,10 @@ export class SlotDetails {
         this.booked = slot.booked || false;
         this.fromTime = {
             hours: (slot.fromTime || {}).hours || '',
-            minutes: (slot.toTime || {}).minutes || ''
+            minutes: (slot.fromTime || {}).minutes || ''
         };
-        this.fromTime = {
-            hours: (slot.fromTime || {}).hours || '',
+        this.toTime = {
+            hours: (slot.toTime || {}).hours || '',
             minutes: (slot.toTime || {}).minutes || ''
         };
         this.timing = slot.timing || '';

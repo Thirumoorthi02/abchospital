@@ -38,6 +38,7 @@ export class AppoinmentSlotsComponent implements OnInit, AfterViewInit {
 
   private populateSlotDetails(data: any = {}): void {
     ((data && data.slotDetails) || []).forEach(slot => {
+      this.openAddSlotsModal = false;
       const slotDetails = new SlotDetails(slot);
       if (slotDetails.timing.toLowerCase() === 'evening') {
         this.eveningSlots.push(slotDetails);
@@ -87,17 +88,12 @@ export class AppoinmentSlotsComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Function to book a slot
+   * Function to addd a slot
    */
-  public bookSlot(req): void {
-    this.sharedDataService.setLoader(true);
-    this.appointmentService.addSlot(this.selectedDate, req).subscribe(data => {
-      this.sharedDataService.setLoader(false);
-      this.populateSlotDetails(data);
-    }, (err) => {
-      this.sharedDataService.setLoader(false);
-      console.log(err);
-    });
+  public addSlotSuccess(res): void {
+    this.morningSlots = [];
+    this.eveningSlots = [];
+    this.populateSlotDetails(res);
   }
 
 }
